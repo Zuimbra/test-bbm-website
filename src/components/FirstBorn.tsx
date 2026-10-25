@@ -28,8 +28,31 @@ export default function FirstBorn() {
               Built through movement, identity
               and everyday experiences.
             </p>
+
+
+            {/* BOTÃO SHOP NOW — MOBILE E DESKTOP */}
+            <Link
+            href="/shop"
+            className="
+                mx-auto mt-10 flex
+                w-full max-w-[280px]
+                items-center justify-center
+                border border-white
+                bg-white px-8 py-4
+                text-xs font-black uppercase
+                tracking-[0.25em] text-[#111111]
+                transition-all duration-300
+                hover:bg-transparent hover:text-white
+                active:scale-[0.97]
+                md:mx-0
+            "
+            >
+            SHOP NOW
+            </Link>
+
           </div>
 
+          {/* BOTÃO PARA A COLEÇÃO */}
           <Link
             href="/collection"
             className="mt-12 w-fit border-b border-white pb-2 text-xs uppercase tracking-[0.2em] transition-opacity hover:opacity-50"

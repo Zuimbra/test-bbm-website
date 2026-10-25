@@ -9,19 +9,19 @@ const collectionMedia: MediaItem[] = [
   // FOTOS DA CAMISA
   {
     type: "image",
-    src: "/photos/firstborn-front.JPG",
+    src: "/photos/firstborn-front.jpg",
     alt: "First Born — Front",
   },
   {
     type: "image",
-    src: "/photos/firstborn-back.JPG",
+    src: "/photos/firstborn-back.jpg",
     alt: "First Born — Back",
   },
 
   // VÍDEO ORIGINAL
   {
     type: "video",
-    src: "/videos/campaign.MP4",
+    src: "/videos/campaign.mp4",
   },
   {
     type: "image",
