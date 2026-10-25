@@ -75,7 +75,7 @@ export default function FirstBorn() {
               className="h-full w-full object-contain"
             >
               <source
-                src="/videos/campaign.MP4"
+                src="/videos/campaign.mp4"
                 type="video/mp4"
               />
             </video>
@@ -88,7 +88,7 @@ export default function FirstBorn() {
             className="group relative block aspect-[3/4] overflow-hidden bg-neutral-900"
           >
             <Image
-              src="/photos/firstborn-front.JPG"
+              src="/photos/firstborn-front.jpg"
               alt="First Born T-shirt — Front"
               fill
               sizes="(max-width: 1024px) 50vw, 25vw"
@@ -109,7 +109,7 @@ export default function FirstBorn() {
             className="group relative block aspect-[3/4] overflow-hidden bg-neutral-900"
           >
             <Image
-              src="/photos/firstborn-back.JPG"
+              src="/photos/firstborn-back.jpg"
               alt="First Born T-shirt — Back"
               fill
               sizes="(max-width: 1024px) 50vw, 25vw"
