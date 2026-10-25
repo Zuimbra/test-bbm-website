@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function FirstBorn() {
   return (
@@ -19,7 +20,7 @@ export default function FirstBorn() {
             <h2 className="text-6xl font-black uppercase leading-[0.9] tracking-tighter md:text-8xl">
               THE
               <br />
-              "FIRST BORN"
+              &quot;FIRST BORN&quot;
             </h2>
 
             <p className="mt-8 max-w-sm text-sm leading-relaxed text-neutral-400">
@@ -29,6 +30,7 @@ export default function FirstBorn() {
             </p>
           </div>
 
+          {/* BOTÃO PARA A COLEÇÃO */}
           <Link
             href="/collection"
             className="mt-12 w-fit border-b border-white pb-2 text-xs uppercase tracking-[0.2em] transition-opacity hover:opacity-50"
@@ -40,37 +42,42 @@ export default function FirstBorn() {
         {/* COLUNA DIREITA */}
         <div className="grid grid-cols-2 gap-3">
 
-          {/* VÍDEO PRINCIPAL */}
+          {/* VÍDEO SUPERIOR */}
           <div className="col-span-2 aspect-video overflow-hidden bg-black">
             <video
               autoPlay
               muted
               loop
               playsInline
+              preload="metadata"
               className="h-full w-full object-contain"
             >
               <source
-                src="/videos/campaign.mp4"
+                src="/videos/campaign.MP4"
                 type="video/mp4"
               />
             </video>
           </div>
 
-          {/* FOTO FRONTAL */}
-          <div className="aspect-[3/4] overflow-hidden bg-neutral-900">
-            <img
-              src="/photos/firstborn-front.jpg"
-              alt="First Born T-shirt — front"
-              className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+          {/* FOTO FRONT — ESQUERDA */}
+          <div className="relative aspect-[3/4] overflow-hidden bg-neutral-900">
+            <Image
+              src="/photos/firstborn-front.JPG"
+              alt="First Born T-shirt — Front"
+              fill
+              sizes="(max-width: 1024px) 50vw, 25vw"
+              className="object-cover transition-transform duration-700 hover:scale-105"
             />
           </div>
 
-          {/* FOTO DAS COSTAS */}
-          <div className="aspect-[3/4] overflow-hidden bg-neutral-900">
-            <img
-              src="/photos/firstborn-back.jpg"
-              alt="First Born T-shirt — back"
-              className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+          {/* FOTO BACK — DIREITA */}
+          <div className="relative aspect-[3/4] overflow-hidden bg-neutral-900">
+            <Image
+              src="/photos/firstborn-back.JPG"
+              alt="First Born T-shirt — Back"
+              fill
+              sizes="(max-width: 1024px) 50vw, 25vw"
+              className="object-cover transition-transform duration-700 hover:scale-105"
             />
           </div>
 

@@ -6,7 +6,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#111111] text-white">
 
       {/* Navegação */}
-      <header className="absolute top-0 left-0 z-50 flex w-full items-center justify-between px-6 py-6 md:px-12">
+      <header className="fixed top-0 left-0 z-50 flex w-full items-center justify-between px-6 py-6 md:px-12">
         <h1 className="text-2xl font-black tracking-tighter">
           BUILT BY MILES
         </h1>
@@ -21,7 +21,8 @@ export default function Home() {
 <Hero />
 <FirstBorn />
 
-      
+      {/* Coleção */}
+
 
       {/* Sobre */}
       <section

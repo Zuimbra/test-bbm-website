@@ -4,28 +4,46 @@ import MediaCarousel, {
   type MediaItem,
 } from "@/components/MediaCarousel";
 
-// ADICIONE SUAS FOTOS E VÍDEOS AQUI
+// GALERIA — ADICIONE NOVAS MÍDIAS AQUI
 const collectionMedia: MediaItem[] = [
+  // FOTOS DA CAMISA
   {
     type: "image",
-    src: "/photos/firstborn-front.jpg",
+    src: "/photos/firstborn-front.JPG",
     alt: "First Born — Front",
   },
   {
     type: "image",
-    src: "/photos/firstborn-back.jpg",
+    src: "/photos/firstborn-back.JPG",
     alt: "First Born — Back",
+  },
+
+  // VÍDEO ORIGINAL
+  {
+    type: "video",
+    src: "/videos/campaign.MP4",
+  },
+  {
+    type: "image",
+    src: "/photos/stillback-dario.jpg",
+    alt: "Dario — Back",
+  },
+  // NOVOS VÍDEOS
+  {
+    type: "video",
+    src: "/videos/campaign2.mp4",
   },
   {
     type: "video",
-    src: "/videos/campaign.mp4",
+    src: "/videos/campaign3.mp4",
   },
 
-  // Adicione mais mídias abaixo:
+  // NOVAS FOTOGRAFIAS
+
   // {
   //   type: "image",
-  //   src: "/photos/new-photo.jpg",
-  //   alt: "Campaign photograph",
+  //   src: "/photos/stillfront-mateus.jpg",
+  //   alt: "Mateus — Front",
   // },
 ];
 
@@ -33,32 +51,34 @@ export default function CollectionPage() {
   return (
     <main className="flex min-h-dvh flex-col bg-[#111111] text-white">
 
-      {/* NAVEGAÇÃO */}
-      <header className="flex items-center justify-between px-6 py-8 md:px-12">
+      
+      {/* CABEÇALHO FIXO */}
+      <header className="sticky top-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-[#111111]/90 px-6 py-6 backdrop-blur-md md:px-12">
         <Link
           href="/"
-          className="text-xs uppercase tracking-widest text-neutral-400 hover:text-white"
+          className="text-xs uppercase tracking-widest text-neutral-400 transition-colors hover:text-white"
         >
-          ← Back
+          ← Back to Home
         </Link>
 
         <span className="text-xs font-bold uppercase tracking-[0.3em]">
-          Built By Miles
+          BUILT BY MILES
         </span>
       </header>
 
-      {/* TÍTULO */}
+
+      {/* TÍTULO DA COLEÇÃO */}
       <div className="px-6 pt-10 text-center md:px-12">
         <p className="mb-4 text-xs uppercase tracking-[0.3em] text-neutral-500">
           Collection 001
         </p>
 
         <h1 className="text-5xl font-black uppercase tracking-tighter md:text-7xl">
-          THE "FIRST BORN"
+          THE &quot;FIRST BORN&quot;
         </h1>
       </div>
 
-      {/* GALERIA CENTRALIZADA */}
+      {/* CARROSSEL HORIZONTAL */}
       <section className="flex flex-1 items-center py-12">
         <MediaCarousel items={collectionMedia} />
       </section>
@@ -66,11 +86,10 @@ export default function CollectionPage() {
       {/* RODAPÉ */}
       <footer className="px-6 py-8 text-center md:px-12">
         <p className="text-xs uppercase tracking-[0.3em] text-neutral-600">
-          Built By Miles — First Drop
+          BUILT BY MILES — FIRST DROP
         </p>
       </footer>
 
     </main>
   );
 }
-
