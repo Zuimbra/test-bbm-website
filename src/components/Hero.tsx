@@ -1,11 +1,59 @@
 
+"use client";
+
+import { useEffect } from "react";
+
 export default function Hero() {
+  useEffect(() => {
+    // Evita que o navegador restaure o scroll anterior
+    const previousRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+
+    // Remove o antigo #collection da URL, caso exista
+    if (window.location.hash === "#collection") {
+      window.history.replaceState(
+        window.history.state,
+        "",
+        window.location.pathname + window.location.search
+      );
+    }
+
+    // Sempre começa a Home no topo
+    const resetScroll = () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "instant",
+      });
+    };
+
+    resetScroll();
+
+    const frame = requestAnimationFrame(resetScroll);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.history.scrollRestoration = previousRestoration;
+    };
+  }, []);
+
+  const scrollToCollection = () => {
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    document.getElementById("collection")?.scrollIntoView({
+      behavior: reduceMotion ? "instant" : "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <section
       id="home-hero"
       className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-black"
     >
-      {/* Fotografia de fundo */}
+      {/* FOTOGRAFIA DE FUNDO */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -13,10 +61,10 @@ export default function Hero() {
         }}
       />
 
-      {/* Camada escura para contraste */}
+      {/* CAMADA ESCURA */}
       <div className="absolute inset-0 bg-black/30" />
 
-      {/* Conteúdo principal */}
+      {/* CONTEÚDO PRINCIPAL */}
       <div className="relative z-10 px-6 text-center">
         <h1 className="text-6xl font-black uppercase leading-[0.9] tracking-tighter text-white md:text-9xl">
           MADE TO
@@ -33,9 +81,10 @@ export default function Hero() {
         </p>
       </div>
 
-      {/* INDICADOR DE SCROLL — SOMENTE MOBILE */}
-      <a
-        href="#collection"
+      {/* SCROLL TO EXPLORE — MOBILE */}
+      <button
+        type="button"
+        onClick={scrollToCollection}
         aria-label="Scroll to explore the collection"
         className="
           absolute bottom-9 left-1/2 z-20
@@ -57,7 +106,7 @@ export default function Hero() {
         >
           ↓
         </span>
-      </a>
+      </button>
     </section>
   );
 }
