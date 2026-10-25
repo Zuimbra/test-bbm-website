@@ -30,7 +30,6 @@ export default function FirstBorn() {
             </p>
           </div>
 
-          {/* BOTÃO PARA A COLEÇÃO */}
           <Link
             href="/collection"
             className="mt-12 w-fit border-b border-white pb-2 text-xs uppercase tracking-[0.2em] transition-opacity hover:opacity-50"
@@ -59,27 +58,47 @@ export default function FirstBorn() {
             </video>
           </div>
 
-          {/* FOTO FRONT — ESQUERDA */}
-          <div className="relative aspect-[3/4] overflow-hidden bg-neutral-900">
+          {/* FOTO FRONT */}
+          <Link
+            href="/shop"
+            aria-label="Shop First Born T-shirt — Front"
+            className="group relative block aspect-[3/4] overflow-hidden bg-neutral-900"
+          >
             <Image
               src="/photos/firstborn-front.JPG"
               alt="First Born T-shirt — Front"
               fill
               sizes="(max-width: 1024px) 50vw, 25vw"
-              className="object-cover transition-transform duration-700 hover:scale-105"
+              className="object-cover transition-all duration-500 group-hover:grayscale group-hover:brightness-50"
             />
-          </div>
 
-          {/* FOTO BACK — DIREITA */}
-          <div className="relative aspect-[3/4] overflow-hidden bg-neutral-900">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors duration-500 group-hover:bg-black/40 md:bg-transparent">
+              <span className="text-sm font-bold uppercase tracking-[0.2em] text-white opacity-100 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100">
+                SHOP
+              </span>
+            </div>
+          </Link>
+
+          {/* FOTO BACK */}
+          <Link
+            href="/shop"
+            aria-label="Shop First Born T-shirt — Back"
+            className="group relative block aspect-[3/4] overflow-hidden bg-neutral-900"
+          >
             <Image
               src="/photos/firstborn-back.JPG"
               alt="First Born T-shirt — Back"
               fill
               sizes="(max-width: 1024px) 50vw, 25vw"
-              className="object-cover transition-transform duration-700 hover:scale-105"
+              className="object-cover transition-all duration-500 group-hover:grayscale group-hover:brightness-50"
             />
-          </div>
+
+            <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors duration-500 group-hover:bg-black/40 md:bg-transparent">
+              <span className="text-sm font-bold uppercase tracking-[0.2em] text-white opacity-100 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100">
+                SHOP
+              </span>
+            </div>
+          </Link>
 
         </div>
       </div>

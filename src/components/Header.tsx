@@ -17,7 +17,6 @@ export default function Header() {
       const heroBottom = hero.getBoundingClientRect().bottom;
       const headerHeight = headerRef.current?.offsetHeight ?? 0;
 
-      // Ativa o fundo preto quando o Hero termina
       setIsScrolled(heroBottom <= headerHeight);
     };
 
@@ -58,13 +57,15 @@ export default function Header() {
       </Link>
 
       <nav className="flex gap-6 text-xs font-medium uppercase tracking-widest text-white">
-        <a href="#collection" className="hover:opacity-60">
+
+        <Link href="/shop" className="hover:opacity-60">
           Shop
-        </a>
+        </Link>
 
         <a href="#about" className="hover:opacity-60">
           About
         </a>
+
       </nav>
     </header>
   );

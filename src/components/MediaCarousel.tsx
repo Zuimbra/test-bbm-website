@@ -1,8 +1,8 @@
-import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
+import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 
 export type MediaItem = {
   type: "image" | "video";
@@ -17,27 +17,33 @@ type MediaCarouselProps = {
 export default function MediaCarousel({
   items,
 }: MediaCarouselProps) {
-
-    const [emblaRef, emblaApi] = useEmblaCarousel(
+  const [emblaRef, emblaApi] = useEmblaCarousel(
     {
-        loop: true,
-        align: "start",
-        startIndex: 0,
-        dragFree: true,
+      // Loop infinito
+      loop: true,
 
-        breakpoints: {
+      // Alinhamento inicial à esquerda
+      align: "start",
+      startIndex: 0,
+
+      // Movimento livre no desktop
+      dragFree: true,
+
+      // Configurações mobile
+      breakpoints: {
         "(max-width: 767px)": {
-            dragFree: false,
+          align: "center",
+          dragFree: false,
         },
-        },
+      },
     },
     [
-        WheelGesturesPlugin({
+      WheelGesturesPlugin({
+        // Scroll horizontal do trackpad
         forceWheelAxis: "x",
-        }),
+      }),
     ]
-    );
-
+  );
 
   return (
     <div className="w-full px-6 md:px-12">
@@ -45,7 +51,10 @@ export default function MediaCarousel({
       {/* GALERIA HORIZONTAL */}
       <div
         ref={emblaRef}
-        className="w-full cursor-grab overflow-hidden active:cursor-grabbing"
+        className="
+          w-full overflow-hidden
+          cursor-grab active:cursor-grabbing
+        "
       >
         <div className="flex touch-pan-y items-center">
 
@@ -53,26 +62,35 @@ export default function MediaCarousel({
             <div
               key={`${item.src}-${index}`}
               className="
-                mr-4 h-[45vh]
+                mr-4 flex shrink-0
+                h-[45dvh]
                 min-h-[280px]
                 max-h-[550px]
-                shrink-0
+                w-[calc(100vw-3rem)]
+                items-center justify-center
+
                 md:h-[60vh]
+                md:w-auto
               "
             >
+
+              {/* FOTOGRAFIAS */}
               {item.type === "image" ? (
                 <img
                   src={item.src}
                   alt={item.alt || ""}
                   draggable={false}
-                  onLoad={() => emblaApi?.reInit()}
                   className="
-                    block h-full w-auto
-                    max-w-none select-none
-                    object-contain
+                    block h-full w-full
+                    select-none object-contain
+
+                    md:w-auto
+                    md:max-w-none
                   "
                 />
               ) : (
+
+                /* VÍDEOS */
                 <video
                   src={item.src}
                   autoPlay
@@ -80,17 +98,18 @@ export default function MediaCarousel({
                   loop
                   playsInline
                   preload="metadata"
-                  onLoadedMetadata={() =>
-                    emblaApi?.reInit()
-                  }
                   disablePictureInPicture
                   disableRemotePlayback
                   className="
                     pointer-events-none
-                    block h-full w-auto
-                    max-w-none object-contain
+                    block h-full w-full
+                    object-contain
+
+                    md:w-auto
+                    md:max-w-none
                   "
                 />
+
               )}
             </div>
           ))}
@@ -98,29 +117,37 @@ export default function MediaCarousel({
         </div>
       </div>
 
-      {/* NAVEGAÇÃO */}
+      {/* CONTROLES DE NAVEGAÇÃO */}
       <div className="mt-8 flex items-center justify-center gap-8">
+
         <button
           type="button"
           onClick={() => emblaApi?.scrollPrev()}
           aria-label="Previous media"
-          className="text-2xl text-white transition-opacity hover:opacity-50"
+          className="
+            text-2xl text-white
+            transition-opacity hover:opacity-50
+          "
         >
           ←
         </button>
 
         <span className="text-xs uppercase tracking-[0.3em] text-neutral-500">
-          Drag to explore
+          Explore Collection
         </span>
 
         <button
           type="button"
           onClick={() => emblaApi?.scrollNext()}
           aria-label="Next media"
-          className="text-2xl text-white transition-opacity hover:opacity-50"
+          className="
+            text-2xl text-white
+            transition-opacity hover:opacity-50
+          "
         >
           →
         </button>
+
       </div>
     </div>
   );
