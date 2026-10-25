@@ -1,3 +1,5 @@
+
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import FirstBorn from "@/components/FirstBorn";
 
@@ -5,26 +7,16 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#111111] text-white">
 
-      {/* Navegação */}
-      <header className="fixed top-0 left-0 z-50 flex w-full items-center justify-between px-6 py-6 md:px-12">
-        <h1 className="text-2xl font-black tracking-tighter">
-          BUILT BY MILES
-        </h1>
+      {/* CABEÇALHO FIXO E DINÂMICO */}
+      <Header />
 
-        <nav className="flex gap-6 text-xs font-medium uppercase tracking-widest">
-          <a href="#collection">Shop</a>
-          <a href="#about">About</a>
-        </nav>
-      </header>
+      {/* HERO COM FOTO E SLOGAN */}
+      <Hero />
 
-      
-<Hero />
-<FirstBorn />
+      {/* COLEÇÃO FIRST BORN */}
+      <FirstBorn />
 
-      {/* Coleção */}
-
-
-      {/* Sobre */}
+      {/* SOBRE A MARCA */}
       <section
         id="about"
         className="border-t border-neutral-800 px-6 py-20 md:px-12"

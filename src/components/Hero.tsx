@@ -1,8 +1,10 @@
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-black">
-
+    <section
+    id="home-hero"
+    className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-black"
+    >
       {/* Fotografia de fundo */}
       <div
         className="absolute inset-0 bg-cover bg-center"

@@ -1,7 +1,8 @@
+import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 
 "use client";
 
-import { useRef } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
 export type MediaItem = {
   type: "image" | "video";
@@ -16,78 +17,92 @@ type MediaCarouselProps = {
 export default function MediaCarousel({
   items,
 }: MediaCarouselProps) {
-  const carouselRef = useRef<HTMLDivElement>(null);
 
-  function scroll(direction: "left" | "right") {
-    const carousel = carouselRef.current;
+    const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+        loop: true,
+        align: "start",
+        startIndex: 0,
+        dragFree: true,
 
-    if (!carousel) return;
+        breakpoints: {
+        "(max-width: 767px)": {
+            dragFree: false,
+        },
+        },
+    },
+    [
+        WheelGesturesPlugin({
+        forceWheelAxis: "x",
+        }),
+    ]
+    );
 
-    carousel.scrollBy({
-      left: direction === "right"
-        ? carousel.clientWidth * 0.7
-        : -carousel.clientWidth * 0.7,
-      behavior: "smooth",
-    });
-  }
 
   return (
-    <div className="relative w-full">
+    <div className="w-full px-6 md:px-12">
 
-      {/* CARROSSEL */}
+      {/* GALERIA HORIZONTAL */}
       <div
-        ref={carouselRef}
-        className="
-          flex w-full items-center gap-4
-          overflow-x-auto overscroll-x-contain
-          snap-x snap-mandatory
-          px-6 md:px-12
-          [scrollbar-width:none]
-          [&::-webkit-scrollbar]:hidden
-        "
+        ref={emblaRef}
+        className="w-full cursor-grab overflow-hidden active:cursor-grabbing"
       >
-        {items.map((item, index) => (
-          <div
-            key={`${item.src}-${index}`}
-            className="
-              flex h-[45vh] max-h-[550px]
-              min-h-[280px] shrink-0
-              snap-center items-center
-              md:h-[60vh]
-            "
-          >
-            {item.type === "image" ? (
-              <img
-                src={item.src}
-                alt={item.alt || ""}
-                className="
-                  block h-full w-auto
-                  max-w-none object-contain
-                "
-              />
-            ) : (
-              <video
-                src={item.src}
-                autoPlay
-                muted
-                loop
-                playsInline
-                controls
-                className="
-                  block h-full w-auto
-                  max-w-none object-contain
-                "
-              />
-            )}
-          </div>
-        ))}
+        <div className="flex touch-pan-y items-center">
+
+          {items.map((item, index) => (
+            <div
+              key={`${item.src}-${index}`}
+              className="
+                mr-4 h-[45vh]
+                min-h-[280px]
+                max-h-[550px]
+                shrink-0
+                md:h-[60vh]
+              "
+            >
+              {item.type === "image" ? (
+                <img
+                  src={item.src}
+                  alt={item.alt || ""}
+                  draggable={false}
+                  onLoad={() => emblaApi?.reInit()}
+                  className="
+                    block h-full w-auto
+                    max-w-none select-none
+                    object-contain
+                  "
+                />
+              ) : (
+                <video
+                  src={item.src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  onLoadedMetadata={() =>
+                    emblaApi?.reInit()
+                  }
+                  disablePictureInPicture
+                  disableRemotePlayback
+                  className="
+                    pointer-events-none
+                    block h-full w-auto
+                    max-w-none object-contain
+                  "
+                />
+              )}
+            </div>
+          ))}
+
+        </div>
       </div>
 
-      {/* CONTROLES */}
+      {/* NAVEGAÇÃO */}
       <div className="mt-8 flex items-center justify-center gap-8">
         <button
           type="button"
-          onClick={() => scroll("left")}
+          onClick={() => emblaApi?.scrollPrev()}
           aria-label="Previous media"
           className="text-2xl text-white transition-opacity hover:opacity-50"
         >
@@ -95,19 +110,18 @@ export default function MediaCarousel({
         </button>
 
         <span className="text-xs uppercase tracking-[0.3em] text-neutral-500">
-          Scroll to explore
+          Drag to explore
         </span>
 
         <button
           type="button"
-          onClick={() => scroll("right")}
+          onClick={() => emblaApi?.scrollNext()}
           aria-label="Next media"
           className="text-2xl text-white transition-opacity hover:opacity-50"
         >
           →
         </button>
       </div>
-
     </div>
   );
 }
