@@ -95,7 +95,7 @@ export default function FirstBorn() {
               className="object-cover transition-all duration-500 group-hover:grayscale group-hover:brightness-50"
             />
 
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors duration-500 group-hover:bg-black/40 md:bg-transparent">
+            <div className="absolute inset-0 hidden items-center justify-center bg-black/20 transition-colors duration-500 group-hover:bg-black/40 md:flex md:bg-transparent">
               <span className="text-sm font-bold uppercase tracking-[0.2em] text-white opacity-100 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100">
                 SHOP
               </span>
@@ -116,7 +116,7 @@ export default function FirstBorn() {
               className="object-cover transition-all duration-500 group-hover:grayscale group-hover:brightness-50"
             />
 
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors duration-500 group-hover:bg-black/40 md:bg-transparent">
+            <div className="absolute inset-0 hidden items-center justify-center bg-black/20 transition-colors duration-500 group-hover:bg-black/40 md:flex md:bg-transparent">
               <span className="text-sm font-bold uppercase tracking-[0.2em] text-white opacity-100 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100">
                 SHOP
               </span>
