@@ -131,13 +131,13 @@ export default function Header() {
                   <span>PRE ORDER NOW</span>
 
                   <span className="text-[9px] opacity-70">
-                    ✦
-                  </span>
+                    //
+                    </span>
 
                   <span>NEXT BATCH IN NOVEMBER</span>
 
                   <span className="text-[9px] opacity-70">
-                    ✦
+                    //
                   </span>
                 </div>
               ))}
