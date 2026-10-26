@@ -14,38 +14,58 @@ export default function BagSuccessPopup() {
   const [visible, setVisible] = useState(false);
   const [entered, setEntered] = useState(false);
   const [leaving, setLeaving] = useState(false);
-  const [product, setProduct] = useState<ProductInfo>({
-    size: "M",
-    quantity: 1,
-  });
+  const [product, setProduct] = useState<ProductInfo | null>(
+    null
+  );
 
+  // LÊ A CONFIRMAÇÃO ENVIADA PELA SHOP
   useEffect(() => {
-    const saved = sessionStorage.getItem(
-      "bbm-bag-success"
-    );
-
-    if (!saved) return;
-
-    sessionStorage.removeItem("bbm-bag-success");
-
     try {
-      const data = JSON.parse(saved);
+      const saved = sessionStorage.getItem(
+        "bbm-bag-success"
+      );
 
-      if (
-        data &&
-        typeof data.size === "string" &&
-        Number.isInteger(data.quantity) &&
-        data.quantity > 0
-      ) {
-        setProduct(data);
+      if (!saved) return;
+
+      try {
+        const data: unknown = JSON.parse(saved);
+
+        if (
+          typeof data === "object" &&
+          data !== null &&
+          "size" in data &&
+          "quantity" in data &&
+          typeof data.size === "string" &&
+          typeof data.quantity === "number" &&
+          Number.isInteger(data.quantity) &&
+          data.quantity > 0
+        ) {
+          setProduct({
+            size: data.size,
+            quantity: data.quantity,
+          });
+        }
+      } catch {
+        // Aceita também confirmações antigas
       }
-    } catch {
-      // Compatível com confirmação antiga
-    }
 
-    const showTimer = window.setTimeout(() => {
+      // Não remove a confirmação ainda
       setVisible(true);
-    }, 0);
+    } catch {
+      // Não interrompe a navegação
+    }
+  }, []);
+
+  // CONTROLA A ANIMAÇÃO E O FECHAMENTO AUTOMÁTICO
+  useEffect(() => {
+    if (!visible) return;
+
+    // Remove a confirmação somente após ativar o popup
+    try {
+      sessionStorage.removeItem("bbm-bag-success");
+    } catch {
+      // Continua exibindo normalmente
+    }
 
     const enterTimer = window.setTimeout(() => {
       setEntered(true);
@@ -60,13 +80,13 @@ export default function BagSuccessPopup() {
     }, 6100);
 
     return () => {
-      window.clearTimeout(showTimer);
       window.clearTimeout(enterTimer);
       window.clearTimeout(leaveTimer);
       window.clearTimeout(removeTimer);
     };
-  }, []);
+  }, [visible]);
 
+  // FECHAMENTO MANUAL
   const closePopup = () => {
     setLeaving(true);
 
@@ -77,13 +97,12 @@ export default function BagSuccessPopup() {
 
   if (!visible) return null;
 
-  const total = (product.quantity * 89.9).toLocaleString(
-    "pt-BR",
-    {
-      style: "currency",
-      currency: "BRL",
-    }
-  );
+  const total = product
+    ? new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format((product.quantity * 8990) / 100)
+    : null;
 
   return (
     <div
@@ -163,8 +182,10 @@ export default function BagSuccessPopup() {
             </div>
           </div>
 
-          {/* PRODUCT */}
+          {/* PRODUCT INFORMATION */}
           <div className="my-6 flex items-center gap-4 border-y border-white/10 py-5">
+
+            {/* PRODUCT IMAGE */}
             <div className="relative h-28 w-20 shrink-0 overflow-hidden bg-neutral-900">
               <Image
                 src="/photos/firstborn-front.jpg"
@@ -175,6 +196,7 @@ export default function BagSuccessPopup() {
               />
             </div>
 
+            {/* PRODUCT DETAILS */}
             <div className="min-w-0 flex-1">
               <p className="mb-2 text-[9px] uppercase tracking-[0.2em] text-neutral-500">
                 THE FIRST BORN
@@ -184,17 +206,21 @@ export default function BagSuccessPopup() {
                 FIRST BORN TEE
               </h3>
 
-              <p className="mt-2 text-[10px] uppercase tracking-widest text-neutral-400">
-                SIZE {product.size} / QTY {product.quantity}
-              </p>
+              {product && (
+                <>
+                  <p className="mt-2 text-[10px] uppercase tracking-widest text-neutral-400">
+                    SIZE {product.size} / QTY {product.quantity}
+                  </p>
 
-              <p className="mt-3 text-sm font-medium">
-                {total}
-              </p>
+                  <p className="mt-3 text-sm font-medium">
+                    {total}
+                  </p>
+                </>
+              )}
             </div>
           </div>
 
-          {/* VIEW BAG */}
+          {/* VIEW BAG BUTTON */}
           <Link
             href="/bag"
             className="
@@ -211,7 +237,7 @@ export default function BagSuccessPopup() {
             <span className="text-lg">↗</span>
           </Link>
 
-          {/* CONTINUE */}
+          {/* CONTINUE EXPLORING */}
           <button
             type="button"
             onClick={closePopup}
@@ -226,7 +252,7 @@ export default function BagSuccessPopup() {
           </button>
         </div>
 
-        {/* AUTO-DISMISS PROGRESS */}
+        {/* ANIMATED PROGRESS BAR */}
         <div className="h-[2px] overflow-hidden bg-white/10">
           <div
             className={`
@@ -242,7 +268,6 @@ export default function BagSuccessPopup() {
             `}
           />
         </div>
-
       </div>
     </div>
   );

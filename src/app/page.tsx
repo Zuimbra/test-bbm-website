@@ -34,7 +34,7 @@ export default function Home() {
         </p>
 
         <h2 className="text-4xl font-black uppercase tracking-tighter">
-          Built Different.
+          Built Different
         </h2>
       </section>
 
