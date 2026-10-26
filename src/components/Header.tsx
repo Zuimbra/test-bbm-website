@@ -6,8 +6,59 @@ import Link from "next/link";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [bagCount, setBagCount] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
 
+  // Atualiza o número de produtos na BAG
+  useEffect(() => {
+    const updateBag = () => {
+      try {
+        const saved = localStorage.getItem("bbm-cart-v1");
+        const items: unknown = saved ? JSON.parse(saved) : [];
+
+        if (!Array.isArray(items)) {
+          setBagCount(0);
+          return;
+        }
+
+        const count = items.reduce(
+          (total: number, item: unknown) => {
+            if (
+              typeof item === "object" &&
+              item !== null &&
+              "quantity" in item &&
+              typeof item.quantity === "number" &&
+              Number.isInteger(item.quantity) &&
+              item.quantity > 0
+            ) {
+              return total + item.quantity;
+            }
+
+            return total;
+          },
+          0
+        );
+
+        setBagCount(count);
+      } catch {
+        setBagCount(0);
+      }
+    };
+
+    updateBag();
+
+    window.addEventListener("pageshow", updateBag);
+    window.addEventListener("focus", updateBag);
+    window.addEventListener("storage", updateBag);
+
+    return () => {
+      window.removeEventListener("pageshow", updateBag);
+      window.removeEventListener("focus", updateBag);
+      window.removeEventListener("storage", updateBag);
+    };
+  }, []);
+
+  // Mantém o header transparente no Hero
   useEffect(() => {
     const updateHeader = () => {
       const hero = document.getElementById("home-hero");
@@ -15,7 +66,8 @@ export default function Header() {
       if (!hero) return;
 
       const heroBottom = hero.getBoundingClientRect().bottom;
-      const headerHeight = headerRef.current?.offsetHeight ?? 0;
+      const headerHeight =
+        headerRef.current?.offsetHeight ?? 0;
 
       setIsScrolled(heroBottom <= headerHeight);
     };
@@ -51,21 +103,25 @@ export default function Header() {
     >
       <Link
         href="/"
-        className="text-2xl font-black tracking-tighter text-white"
+        className="text-xl font-black tracking-tighter text-white md:text-2xl"
       >
         BUILT BY MILES
       </Link>
 
-      <nav className="flex gap-6 text-xs font-medium uppercase tracking-widest text-white">
-
-        <Link href="/shop" className="hover:opacity-60">
-          Shop
+      <nav className="flex gap-5 text-xs font-medium uppercase tracking-widest text-white md:gap-6">
+        <Link
+          href="/shop"
+          className="hover:opacity-60"
+        >
+          SHOP
         </Link>
 
-        <a href="#about" className="hover:opacity-60">
-          About
-        </a>
-
+        <Link
+          href="/bag"
+          className="hover:opacity-60"
+        >
+          BAG ({bagCount})
+        </Link>
       </nav>
     </header>
   );
