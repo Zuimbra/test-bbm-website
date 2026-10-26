@@ -177,7 +177,7 @@ export default function BagSuccessPopup() {
               </p>
 
               <h2 className="text-2xl font-black uppercase leading-none tracking-tighter">
-                GOOD CHOICE.
+                BOA ESCOLHA!
               </h2>
             </div>
           </div>
@@ -209,7 +209,7 @@ export default function BagSuccessPopup() {
               {product && (
                 <>
                   <p className="mt-2 text-[10px] uppercase tracking-widest text-neutral-400">
-                    SIZE {product.size} / QTY {product.quantity}
+                    TAMANHO {product.size} / QTD {product.quantity}
                   </p>
 
                   <p className="mt-3 text-sm font-medium">
@@ -233,7 +233,7 @@ export default function BagSuccessPopup() {
               hover:bg-neutral-300
             "
           >
-            <span>VIEW YOUR BAG</span>
+            <span>VER SEU CARRINHO</span>
             <span className="text-lg">↗</span>
           </Link>
 
@@ -248,7 +248,7 @@ export default function BagSuccessPopup() {
               transition hover:text-white
             "
           >
-            CONTINUE EXPLORING
+            CONTINUAR EXPLORANDO
           </button>
         </div>
 

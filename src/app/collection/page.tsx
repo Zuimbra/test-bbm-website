@@ -58,7 +58,7 @@ export default function CollectionPage() {
           href="/"
           className="text-xs uppercase tracking-widest text-neutral-400 transition-colors hover:text-white"
         >
-          ← Back to Home
+          ← INÍCIO
         </Link>
 
         <span className="text-xs font-bold uppercase tracking-[0.3em]">
