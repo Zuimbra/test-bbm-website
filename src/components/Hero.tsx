@@ -2,19 +2,23 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function Hero() {
   useEffect(() => {
     // Evita que o navegador restaure o scroll anterior
-    const previousRestoration = window.history.scrollRestoration;
+    const previousRestoration =
+      window.history.scrollRestoration;
+
     window.history.scrollRestoration = "manual";
 
-    // Remove o antigo #collection da URL, caso exista
+    // Remove o antigo #collection da URL
     if (window.location.hash === "#collection") {
       window.history.replaceState(
         window.history.state,
         "",
-        window.location.pathname + window.location.search
+        window.location.pathname +
+          window.location.search
       );
     }
 
@@ -33,7 +37,9 @@ export default function Hero() {
 
     return () => {
       cancelAnimationFrame(frame);
-      window.history.scrollRestoration = previousRestoration;
+
+      window.history.scrollRestoration =
+        previousRestoration;
     };
   }, []);
 
@@ -42,10 +48,12 @@ export default function Hero() {
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    document.getElementById("collection")?.scrollIntoView({
-      behavior: reduceMotion ? "instant" : "smooth",
-      block: "start",
-    });
+    document
+      .getElementById("collection")
+      ?.scrollIntoView({
+        behavior: reduceMotion ? "instant" : "smooth",
+        block: "start",
+      });
   };
 
   return (
@@ -57,7 +65,8 @@ export default function Hero() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/photos/runcircuit.jpg')",
+          backgroundImage:
+            "url('/photos/runcircuit.jpg')",
         }}
       />
 
@@ -66,12 +75,34 @@ export default function Hero() {
 
       {/* CONTEÚDO PRINCIPAL */}
       <div className="relative z-10 px-6 text-center">
+
+        {/* TÍTULO */}
         <h1 className="text-6xl font-black uppercase leading-[0.9] tracking-tighter text-white md:text-9xl">
           MADE TO
           <br />
           MOVE
         </h1>
 
+        {/* JOIN COMMUNITY */}
+        <Link
+          href="/community"
+          className="
+            mx-auto mt-10 flex
+            w-full max-w-[280px]
+            items-center justify-center
+            border border-white
+            bg-white px-8 py-4
+            text-xs font-black uppercase
+            tracking-[0.25em] text-[#111111]
+            transition-all duration-300
+            hover:bg-transparent hover:text-white
+            active:scale-[0.97]
+          "
+        >
+          JOIN THE COMMUNITY
+        </Link>
+
+        {/* DESCRIÇÃO */}
         <p className="mt-6 text-sm uppercase tracking-[0.3em] text-white/80">
           More than clothing.
           <br />
@@ -79,6 +110,7 @@ export default function Hero() {
           <br />
           movement and everyday life.
         </p>
+
       </div>
 
       {/* SCROLL TO EXPLORE — MOBILE */}

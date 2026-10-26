@@ -4,12 +4,14 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
+const ANNOUNCEMENT_REPEAT = 6;
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [bagCount, setBagCount] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
 
-  // Atualiza o número de produtos na BAG
+  // ATUALIZA A QUANTIDADE DE PRODUTOS NA BAG
   useEffect(() => {
     const updateBag = () => {
       try {
@@ -58,7 +60,7 @@ export default function Header() {
     };
   }, []);
 
-  // Mantém o header transparente no Hero
+  // HEADER TRANSPARENTE NO HERO, ESCURO APÓS SCROLL
   useEffect(() => {
     const updateHeader = () => {
       const hero = document.getElementById("home-hero");
@@ -87,42 +89,103 @@ export default function Header() {
   }, []);
 
   return (
-    <header
-      ref={headerRef}
-      className={`
-        fixed left-0 top-0 z-50
-        flex w-full items-center justify-between
-        px-6 py-6 md:px-12
-        transition-colors duration-300
-        ${
-          isScrolled
-            ? "bg-[#111111]"
-            : "bg-transparent"
-        }
-      `}
-    >
-      <Link
-        href="/"
-        className="text-xl font-black tracking-tighter text-white md:text-2xl"
+    <>
+      {/* ANNOUNCEMENT BAR */}
+      <div
+        className="
+          fixed left-0 top-0 z-[60]
+          flex h-7 w-full items-center
+          overflow-hidden
+          border-b border-white/10
+          bg-[#385845] text-white
+        "
       >
-        BUILT BY MILES
-      </Link>
+        {/* TEXTO PARA ACESSIBILIDADE */}
+        <span className="sr-only">
+          Pre order now. Next batch in November.
+        </span>
 
-      <nav className="flex gap-5 text-xs font-medium uppercase tracking-widest text-white md:gap-6">
-        <Link
-          href="/shop"
-          className="hover:opacity-60"
+        {/* TEXTO EM MOVIMENTO */}
+        <div
+          aria-hidden="true"
+          className="bbm-marquee-track flex w-max items-center"
         >
-          SHOP
+          {Array.from({ length: 2 }).map((_, group) => (
+            <div
+              key={group}
+              className="flex shrink-0 items-center"
+            >
+              {Array.from({
+                length: ANNOUNCEMENT_REPEAT,
+              }).map((_, index) => (
+                <div
+                  key={index}
+                  className="
+                    flex shrink-0 items-center
+                    gap-5 whitespace-nowrap
+                    pr-12
+                    text-[10px] font-semibold
+                    uppercase tracking-[0.2em]
+                  "
+                >
+                  <span>PRE ORDER NOW</span>
+
+                  <span className="text-[9px] opacity-70">
+                    ✦
+                  </span>
+
+                  <span>NEXT BATCH IN NOVEMBER</span>
+
+                  <span className="text-[9px] opacity-70">
+                    ✦
+                  </span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* MAIN HEADER */}
+      <header
+        ref={headerRef}
+        className={`
+          fixed left-0 top-7 z-50
+          flex w-full items-center justify-between
+          px-6 py-6 md:px-12
+          transition-colors duration-300
+          ${
+            isScrolled
+              ? "bg-[#111111]"
+              : "bg-transparent"
+          }
+        `}
+      >
+        {/* LOGO */}
+        <Link
+          href="/"
+          className="text-xl font-black tracking-tighter text-white md:text-2xl"
+        >
+          BUILT BY MILES
         </Link>
 
-        <Link
-          href="/bag"
-          className="hover:opacity-60"
-        >
-          BAG ({bagCount})
-        </Link>
-      </nav>
-    </header>
+        {/* NAVIGATION */}
+        <nav className="flex gap-5 text-xs font-medium uppercase tracking-widest text-white md:gap-6">
+          <Link
+            href="/shop"
+            className="hover:opacity-60"
+          >
+            SHOP
+          </Link>
+
+          <Link
+            href="/bag"
+            className="hover:opacity-60"
+          >
+            BAG ({bagCount})
+          </Link>
+        </nav>
+      </header>
+    </>
   );
 }

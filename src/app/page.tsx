@@ -1,10 +1,8 @@
-
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import FirstBorn from "@/components/FirstBorn";
 import IntroScreen from "@/components/IntroScreen";
 import BagSuccessPopup from "@/components/BagSuccessPopup";
-
 
 export default function Home() {
   return (
@@ -12,6 +10,7 @@ export default function Home() {
 
       {/* INTRO SCREEN */}
       <IntroScreen />
+      
       {/* CABEÇALHO FIXO E DINÂMICO */}
       <Header />
 
@@ -36,6 +35,19 @@ export default function Home() {
         <h2 className="text-4xl font-black uppercase tracking-tighter">
           Built Different
         </h2>
+
+        {/* TEXTO INSERIDO AQUI */}
+        <div className="mt-8 max-w-2xl space-y-4 text-neutral-300 md:text-lg">
+          <p>
+            A Built by Miles nasceu de uma vontade simples: criar algo ao qual valesse a pena pertencer. Um projeto pessoal de Dario Soares, que começa na corrida e encontra sentido no caminho.
+          </p>
+          <p>
+            O caminho nos constrói. O movimento nos transforma. A intenção nos guia.
+          </p>
+          <p>
+            As experiências, o esforço e a constância fazem parte de quem somos. O movimento vai além da corrida. Não é preciso ser atleta para fazer parte.
+          </p>
+        </div>
       </section>
 
     </main>
