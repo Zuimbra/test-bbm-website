@@ -154,7 +154,7 @@ export default function ShopPage() {
           href="/"
           className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 hover:text-white"
         >
-          ← BACK
+          ← VOLTAR
         </Link>
 
         <Link
@@ -168,7 +168,7 @@ export default function ShopPage() {
           href="/bag"
           className="text-[10px] font-medium uppercase tracking-[0.2em] hover:opacity-60"
         >
-          BAG ({bagCount})
+          CARRINHO ({bagCount})
         </Link>
       </header>
 
@@ -250,15 +250,15 @@ export default function ShopPage() {
           </p>
 
           <p className="mt-8 max-w-md text-sm leading-relaxed text-neutral-400">
-            The beginning of something bigger.
-            Built through movement, identity
-            and everyday experiences.
+              O começo de algo maior.
+              Para aqueles que se movem, 
+              que se expressam e que vivem a vida em seus próprios termos.
           </p>
 
           {/* SIZES */}
           <div className="mt-12">
             <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em]">
-              SELECT SIZE
+              ESCOLHA O TAMANHO
             </p>
 
             <div className="flex flex-wrap gap-3">
@@ -290,7 +290,7 @@ export default function ShopPage() {
           {/* QUANTITY */}
           <div className="mt-10">
             <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em]">
-              QUANTITY
+              QUANTIDADE
             </p>
 
             <div className="flex h-12 w-36 items-center justify-between border border-neutral-600">
@@ -328,7 +328,7 @@ export default function ShopPage() {
             onClick={addToBag}
             className="mt-12 flex w-full max-w-lg items-center justify-between bg-white px-7 py-5 text-xs font-black uppercase tracking-[0.2em] text-black transition-colors hover:bg-neutral-300"
           >
-            <span>ADD TO BAG</span>
+            <span>ADICIONAR</span>
             <span>↗</span>
           </button>
 
@@ -345,9 +345,10 @@ export default function ShopPage() {
             </p>
 
             <p className="mt-3 max-w-md text-xs leading-relaxed text-neutral-500">
-              Local delivery is being prepared.
-              Shipping fees and dispatch dates will
-              be confirmed before checkout is available.
+              Delivery local em Fortaleza, Brasil.
+              <br />
+              Taxas de envio e datas de despacho serão
+              confirmadas antes do checkout estar disponível.
             </p>
           </div>
         </div>

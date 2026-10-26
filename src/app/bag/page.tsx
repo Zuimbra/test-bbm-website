@@ -105,7 +105,7 @@ export default function BagPage() {
         href="/"
         className="text-[10px] uppercase tracking-[0.15em] text-neutral-400 transition hover:text-white"
         >
-        ← BACK TO HOME
+        ← INÍCIO
         </Link>
 
 
@@ -117,7 +117,7 @@ export default function BagPage() {
         </Link>
 
         <span className="text-[10px] font-medium uppercase tracking-[0.15em]">
-          BAG ({loaded ? itemCount : "—"})
+          CARRINHO ({loaded ? itemCount : "—"})
         </span>
       </header>
 
@@ -141,18 +141,18 @@ export default function BagPage() {
           /* EMPTY BAG */
           <div className="border-t border-neutral-800 py-20">
             <p className="text-lg uppercase tracking-widest text-neutral-400">
-              YOUR BAG IS EMPTY.
+              SEU CARRINHO ESTÁ VAZIO.
             </p>
 
             <p className="mt-4 text-sm text-neutral-500">
-              Nothing here yet.
+              Nada aqui ainda.
             </p>
 
             <Link
               href="/shop"
               className="mt-10 inline-flex items-center justify-between gap-12 bg-white px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-black transition hover:bg-neutral-300"
             >
-              EXPLORE SHOP
+              EXPLORAR A LOJA
               <span>↗</span>
             </Link>
           </div>
@@ -246,7 +246,7 @@ export default function BagPage() {
                         onClick={() => removeItem(item.size)}
                         className="pb-1 text-[10px] uppercase tracking-[0.15em] text-neutral-500 underline underline-offset-4 transition hover:text-white"
                       >
-                        REMOVE
+                        REMOVER
                       </button>
                     </div>
                   </div>
@@ -257,7 +257,7 @@ export default function BagPage() {
                 href="/shop"
                 className="mt-8 inline-block text-xs uppercase tracking-[0.2em] text-neutral-400 transition hover:text-white"
               >
-                ← CONTINUE SHOPPING
+                ← CONTINUAR COMPRANDO
               </Link>
             </div>
 
@@ -265,11 +265,11 @@ export default function BagPage() {
             <aside className="h-fit border-t border-white pt-7">
 
               <h2 className="mb-9 text-xl font-black uppercase tracking-tight">
-                ORDER SUMMARY
+                RESUMO DO PEDIDO
               </h2>
 
               <div className="flex items-center justify-between text-xs uppercase tracking-[0.15em] text-neutral-400">
-                <span>ITEMS</span>
+                <span>ITENS</span>
                 <span>{itemCount}</span>
               </div>
 
@@ -292,8 +292,8 @@ export default function BagPage() {
                 </div>
 
                 <p className="mt-4 text-xs leading-relaxed text-neutral-500">
-                  Shipping is not included.
-                  Local delivery in Fortaleza, Brazil.
+                  Envio não incluído.
+                  Entrega local em Fortaleza, Brasil.
                 </p>
               </div>
 

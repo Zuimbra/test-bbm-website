@@ -61,9 +61,9 @@ export default function FirstBorn() {
             </h2>
 
             <p className="mt-8 max-w-sm text-sm leading-relaxed text-neutral-400">
-              The beginning of something bigger.
-              Built through movement, identity
-              and everyday experiences.
+              O começo de algo maior.
+              Para aqueles que se movem, 
+              que se expressam e que vivem a vida em seus próprios termos.
             </p>
 
             {/* BOTÃO SHOP NOW */}
@@ -83,7 +83,7 @@ export default function FirstBorn() {
                 md:mx-0
               "
             >
-              SHOP NOW
+              COMPRAR AGORA
             </Link>
           </div>
 
@@ -92,7 +92,7 @@ export default function FirstBorn() {
             href="/collection"
             className="mt-12 w-fit border-b border-white pb-2 text-xs uppercase tracking-[0.2em] transition-opacity hover:opacity-50"
           >
-            Explore Collection ↗
+            Explorar Coleção ↗
           </Link>
         </div>
 
@@ -137,7 +137,7 @@ export default function FirstBorn() {
                   group-hover:opacity-100
                 "
               >
-                SHOP
+                COMPRAR
               </span>
             </Link>
           </div>
@@ -203,7 +203,7 @@ export default function FirstBorn() {
 
             <div className="absolute inset-0 hidden items-center justify-center bg-black/20 transition-colors duration-500 group-hover:bg-black/40 md:flex md:bg-transparent">
               <span className="text-sm font-bold uppercase tracking-[0.2em] text-white opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100">
-                SHOP
+                COMPRAR
               </span>
             </div>
           </Link>

@@ -50,6 +50,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* RODAPÉ */}
+        <footer className="px-6 pb-6 pt-2 text-right md:px-12">
+        <p className="text-[9px] font-normal tracking-[0.05em] text-neutral-600">
+          Site desenhado e desenvolvido por Mateus Braga
+        </p>
+      </footer>
+
+
     </main>
   );
 }

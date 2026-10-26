@@ -102,7 +102,7 @@ export default function Header() {
       >
         {/* TEXTO PARA ACESSIBILIDADE */}
         <span className="sr-only">
-          Pre order now. Next batch in November.
+          Pre venda agora. Próximo lote em novembro.
         </span>
 
         {/* TEXTO EM MOVIMENTO */}
@@ -120,21 +120,23 @@ export default function Header() {
               }).map((_, index) => (
                 <div
                   key={index}
-                  className="
-                    flex shrink-0 items-center
-                    gap-5 whitespace-nowrap
-                    pr-12
-                    text-[10px] font-semibold
-                    uppercase tracking-[0.2em]
-                  "
+
+                className="
+                flex shrink-0 items-center
+                gap-5 whitespace-nowrap
+                pr-5
+                text-[10px] font-semibold
+                uppercase tracking-[0.2em]
+                "
+
                 >
-                  <span>PRE ORDER NOW</span>
+                  <span>PRE VENDA AGORA</span>
 
                   <span className="text-[9px] opacity-70">
                     //
                     </span>
 
-                  <span>NEXT BATCH IN NOVEMBER</span>
+                  <span>PRÓXIMO LOTE EM NOVEMBRO</span>
 
                   <span className="text-[9px] opacity-70">
                     //
@@ -175,14 +177,14 @@ export default function Header() {
             href="/shop"
             className="hover:opacity-60"
           >
-            SHOP
+            COMPRAR
           </Link>
 
           <Link
             href="/bag"
             className="hover:opacity-60"
           >
-            BAG ({bagCount})
+            CARRINHO ({bagCount})
           </Link>
         </nav>
       </header>

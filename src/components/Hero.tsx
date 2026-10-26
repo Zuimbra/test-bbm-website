@@ -99,16 +99,16 @@ export default function Hero() {
             active:scale-[0.97]
           "
         >
-          JOIN THE COMMUNITY
+          JUNTE SE
         </Link>
 
         {/* DESCRIÇÃO */}
         <p className="mt-6 text-sm uppercase tracking-[0.3em] text-white/80">
-          More than clothing.
+          Mais que uma marca.
           <br />
-          A reflection of identity,
+          Uma reflexão de identidade,
           <br />
-          movement and everyday life.
+          movimento e everyday life.
         </p>
 
       </div>

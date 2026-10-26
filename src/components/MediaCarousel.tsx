@@ -133,7 +133,7 @@ export default function MediaCarousel({
         </button>
 
         <span className="text-xs uppercase tracking-[0.3em] text-neutral-500">
-          Explore Collection
+          Explorar Coleção
         </span>
 
         <button
