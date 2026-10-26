@@ -2,11 +2,14 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import FirstBorn from "@/components/FirstBorn";
+import IntroScreen from "@/components/IntroScreen";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#111111] text-white">
 
+      {/* INTRO SCREEN */}
+      <IntroScreen />
       {/* CABEÇALHO FIXO E DINÂMICO */}
       <Header />
 
