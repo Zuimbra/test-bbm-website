@@ -124,7 +124,22 @@ export default function ShopPage() {
       );
 
       // Volta para a Home após adicionar
-      router.push("/");
+      
+    // Confirmação para a próxima página 
+    
+
+    sessionStorage.setItem(
+    "bbm-bag-success",
+    JSON.stringify({
+        size: selectedSize,
+        quantity,
+    })
+    );
+
+    // Volta para a Home
+    router.push("/");
+
+
     } catch {
       setMessage("COULD NOT SAVE BAG. PLEASE TRY AGAIN.");
     }

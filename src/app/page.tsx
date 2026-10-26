@@ -3,6 +3,8 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import FirstBorn from "@/components/FirstBorn";
 import IntroScreen from "@/components/IntroScreen";
+import BagSuccessPopup from "@/components/BagSuccessPopup";
+
 
 export default function Home() {
   return (
@@ -12,6 +14,9 @@ export default function Home() {
       <IntroScreen />
       {/* CABEÇALHO FIXO E DINÂMICO */}
       <Header />
+
+      {/* POPUP DE SUCESSO */}
+      <BagSuccessPopup />
 
       {/* HERO COM FOTO E SLOGAN */}
       <Hero />

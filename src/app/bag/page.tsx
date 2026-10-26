@@ -100,12 +100,14 @@ export default function BagPage() {
       {/* HEADER */}
       <header className="flex items-center justify-between gap-3 border-b border-white/10 px-6 py-7 md:px-12">
 
+
         <Link
-          href="/shop"
-          className="text-[10px] uppercase tracking-[0.15em] text-neutral-400 transition hover:text-white"
+        href="/"
+        className="text-[10px] uppercase tracking-[0.15em] text-neutral-400 transition hover:text-white"
         >
-          ← SHOP
+        ← BACK TO HOME
         </Link>
+
 
         <Link
           href="/"
