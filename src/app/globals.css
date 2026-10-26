@@ -35,3 +35,31 @@ html {
     scroll-behavior: auto;
   }
 }
+
+
+/* Alternância automática da camiseta no mobile */
+@keyframes bbm-shirt-swap {
+  0%, 42% {
+    opacity: 0;
+  }
+
+  50%, 92% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .bbm-shirt-back {
+    animation: bbm-shirt-swap 6s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bbm-shirt-back {
+    animation: none;
+  }
+}
