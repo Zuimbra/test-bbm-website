@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import CommunityTabs from "@/components/CommunityTabs";
 
 export default async function CommunityPage() {
   const supabase = await createClient();
@@ -9,10 +10,12 @@ export default async function CommunityPage() {
   const { data, error } =
     await supabase.auth.getClaims();
 
-  // PROTEÇÃO: APENAS MEMBROS LOGADOS
+  // APENAS USUÁRIOS AUTENTICADOS
   if (error || !data?.claims) {
     redirect("/login");
   }
+
+  const userId = data.claims.sub;
 
   const email =
     typeof data.claims.email === "string"
@@ -64,53 +67,9 @@ export default async function CommunityPage() {
         </p>
       </section>
 
-      {/* COMMUNITY SECTIONS */}
-      <section className="mx-auto grid max-w-[1500px] grid-cols-1 gap-4 px-6 pb-24 md:grid-cols-2 md:px-12">
+      {/* ABAS E FEED */}
+      <CommunityTabs userId={userId} />
 
-        {/* OFFICIAL FEED */}
-        <div className="flex min-h-80 flex-col justify-between border border-neutral-700 bg-[#181818] p-8">
-          <div>
-            <p className="mb-8 text-[10px] uppercase tracking-[0.3em] text-neutral-500">
-              01 / OFFICIAL
-            </p>
-
-            <h2 className="text-4xl font-black uppercase tracking-tighter">
-              THE FEED.
-            </h2>
-
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-neutral-400">
-              Behind the scenes, announcements,
-              new drops and stories from BBM.
-            </p>
-          </div>
-
-          <p className="mt-12 border-t border-neutral-700 pt-5 text-[10px] uppercase tracking-[0.2em] text-neutral-500">
-            COMING SOON
-          </p>
-        </div>
-
-        {/* MEMBER GALLERY */}
-        <div className="flex min-h-80 flex-col justify-between border border-neutral-700 bg-[#181818] p-8">
-          <div>
-            <p className="mb-8 text-[10px] uppercase tracking-[0.3em] text-neutral-500">
-              02 / MEMBERS
-            </p>
-
-            <h2 className="text-4xl font-black uppercase tracking-tighter">
-              YOUR MILES.
-            </h2>
-
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-neutral-400">
-              Share your photographs, your routes
-              and the places your BBM gear takes you.
-            </p>
-          </div>
-
-          <p className="mt-12 border-t border-neutral-700 pt-5 text-[10px] uppercase tracking-[0.2em] text-neutral-500">
-            COMING SOON
-          </p>
-        </div>
-      </section>
     </main>
   );
 }

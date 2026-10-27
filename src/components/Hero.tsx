@@ -129,7 +129,7 @@ export default function Hero() {
         "
       >
         <span className="text-[10px] font-medium uppercase tracking-[0.3em]">
-          Scroll to explore
+          Mais abaixo
         </span>
 
         <span
