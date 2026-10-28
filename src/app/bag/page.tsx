@@ -200,7 +200,7 @@ export default function BagPage() {
                       </Link>
 
                       <p className="mt-3 text-xs uppercase tracking-[0.2em] text-neutral-400">
-                        SIZE / {item.size}
+                        TAMANHO / {item.size}
                       </p>
 
                       <p className="mt-4 text-sm font-medium">
